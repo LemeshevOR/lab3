@@ -98,9 +98,6 @@ void show_histogram_text(vector<size_t> bins)
     return;
 }
 
-
-
-//show_histogram_text()
 int main()
 {
     // Ввод данных

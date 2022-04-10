@@ -127,6 +127,9 @@ void show_histogram_svg(const vector<size_t>& bins) {
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
     svg_text(TEXT_LEFT, TEXT_BASELINE, to_string(bins[0]));
     
+
+   
+    
 }
 
 void svg_rect(double x, double y, double width, double height,string stroke = "black", string fill = "black")
@@ -139,13 +142,17 @@ void svg_rect(double x, double y, double width, double height,string stroke = "b
 
 
 int main()
-{const auto IMAGE_WIDTH = 400;
+{   
+
+    const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
     const auto TEXT_BASELINE = 20;
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 10;
+    const size_t SCREEN_WIDTH = 80;
+    const size_t MAX_ASTERISK = SCREEN_WIDTH - 3 - 1;
     // Ввод данных
     size_t number_count;
     cerr << "Enter number count: ";
@@ -164,8 +171,19 @@ int main()
     show_histogram_svg(bins);
 
     double top = 0;
-    for (size_t bin : bins) {
-        const double bin_width = BLOCK_WIDTH * bin;
+    for (size_t bin : bins) 
+    {
+        size_t max_bin = bins[0];
+        if (bin > max_bin)
+        {
+            max_bin = bin;
+        }
+        size_t height = bin;
+        if (max_bin > MAX_ASTERISK)   //Если масштабировать необходимо
+         {
+             height = MAX_ASTERISK * (static_cast<double>(bin) / max_bin);
+         }
+        const double bin_width = BLOCK_WIDTH * height;    
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT,"MediumSlateBlue","#E6E6FA");
         top += BIN_HEIGHT;

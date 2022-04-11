@@ -141,9 +141,14 @@
   <ItemGroup>
     <ClCompile Include="histogram.cpp" />
     <ClCompile Include="lab3.cpp" />
+    <ClCompile Include="svg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="histogram.h" />
+    <ClInclude Include="svg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

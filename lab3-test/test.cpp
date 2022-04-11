@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+
 void test_positive() 
 {
     double min = 0;
@@ -42,12 +43,26 @@ void test_same_numbers()
 
 void test_empty_vector()
 {
-    double min;
-    double max;
+    double min=1;
+    double max=3;
     find_minmax({}, min, max);
-    assert(min == 0);
-    assert(max == 0);
+    assert(min == 1);
+    assert(max == 3);
 }
+void test_big()
+{
+    double BLOCK_WIDTH = 35;
+    bool check = check_block_weight(BLOCK_WIDTH);
+    assert(check == true);
+}
+
+void test_small()
+{
+    double BLOCK_WIDTH = 5;
+    bool check = check_block_weight(BLOCK_WIDTH);
+    assert(check == false);
+}
+
 
 
 
@@ -58,4 +73,6 @@ int main()
     test_one_number();
     test_same_numbers();
     test_empty_vector();
+    test_big();
+    test_small();
 }

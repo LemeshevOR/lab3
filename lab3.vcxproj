@@ -72,12 +72,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\include;C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\include;C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\lib\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\include;C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\lib;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\include;C:\Users\ileme\Desktop\curl-7.70.0\builds\libcurl-vc-x86-release-static-ipv6-sspi-winssl\lib\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -88,10 +92,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\ileme\Desktop\curl-7.82.0-win64-mingw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\ileme\Desktop\curl-7.82.0-win64-mingw\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,6 +127,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>libcurl_a.lib;Ws2_32.lib;Crypt32.lib;Wldap32.lib;Normaliz.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -144,6 +152,7 @@
     <ClCompile Include="svg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\curl-7.82.0-win64-mingw\include\curl\curl.h" />
     <ClInclude Include="histogram.h" />
     <ClInclude Include="svg.h" />
   </ItemGroup>

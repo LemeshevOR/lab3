@@ -3,7 +3,10 @@
 #include <string>
 #include "histogram.h"
 #include "svg.h"
+#define CURL_STATICLIB
+#include <curl\curl.h>
 using namespace std;
+
 
 
 
@@ -11,6 +14,7 @@ using namespace std;
 
 int main()
 {
+    curl_global_init(CURL_GLOBAL_ALL);
 
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
@@ -20,29 +24,14 @@ int main()
     const auto BIN_HEIGHT = 30;
     double BLOCK_WIDTH = 10;
     // Ввод данных
+    curl_global_init(CURL_GLOBAL_ALL);
     const auto input = read_input(cin,true);
-    
-    
-    
-    while (check_block_weight(BLOCK_WIDTH)==true)
-    {
-        cerr << "Invalid block width!  " << "Enter Block width: ";
-        cin >> BLOCK_WIDTH;
-    }
-
-
-
     // Создание диаграммы
-    
-
-
     const auto bins = make_histogram(input);
-
     // Вывод данных
     show_histogram_svg(bins);
     double top = 0;
-
-
+    
     size_t max_bin = bins[0];
     for (size_t bin : bins)
     {

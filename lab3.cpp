@@ -7,24 +7,6 @@ using namespace std;
 
 
 
-Input read_input(istream& in)
-{
-    Input data;
-
-    cerr << "Enter number count: ";
-    size_t number_count;
-    in >> number_count;
-
-    cerr << "Enter numbers: ";
-    data.numbers = input_numbers(in, number_count);
-
-    cerr << "Enter column count: ";
-    in >> data.bin_count;
-
-    cerr << "Enter Block width: ";
-    cin >> data.BLOCK_WIDTH;
-    return data;
-}
 
 
 int main()
@@ -38,7 +20,7 @@ int main()
     const auto BIN_HEIGHT = 30;
     double BLOCK_WIDTH = 10;
     // Ввод данных
-    const auto input = read_input(cin);
+    const auto input = read_input(cin,true);
     
     
     

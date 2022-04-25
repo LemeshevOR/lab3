@@ -5,13 +5,7 @@
 #include "svg.h"
 using namespace std;
 
-struct Input 
-{
-    vector<double> numbers;
-    size_t bin_count;
-    double BLOCK_WIDTH = 10;
 
-};
 
 Input read_input(istream& in)
 {
@@ -57,11 +51,10 @@ int main()
 
 
     // Создание диаграммы
-    double min, max;
-    find_minmax(input.numbers, min, max);
+    
 
 
-    const auto bins = make_histogram(input.numbers, input.bin_count,min,max);
+    const auto bins = make_histogram(input);
 
     // Вывод данных
     show_histogram_svg(bins);

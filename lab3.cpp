@@ -5,8 +5,32 @@
 #include "svg.h"
 using namespace std;
 
+struct Input 
+{
+    vector<double> numbers;
+    size_t bin_count;
+    double BLOCK_WIDTH = 10;
 
+};
 
+Input read_input(istream& in)
+{
+    Input data;
+
+    cerr << "Enter number count: ";
+    size_t number_count;
+    in >> number_count;
+
+    cerr << "Enter numbers: ";
+    data.numbers = input_numbers(in, number_count);
+
+    cerr << "Enter column count: ";
+    in >> data.bin_count;
+
+    cerr << "Enter Block width: ";
+    cin >> data.BLOCK_WIDTH;
+    return data;
+}
 
 
 int main()
@@ -20,18 +44,8 @@ int main()
     const auto BIN_HEIGHT = 30;
     double BLOCK_WIDTH = 10;
     // Ввод данных
-    size_t number_count;
-    cerr << "Enter number count: ";
-    cin >> number_count;
-
-    const auto numbers = input_numbers(cin, number_count);
-
-    size_t bin_count;
-    cerr << "Enter column count: ";
-    cin >> bin_count;
-
-    cerr << "Enter Block width: ";
-    cin >> BLOCK_WIDTH;
+    const auto input = read_input(cin);
+    
     
     
     while (check_block_weight(BLOCK_WIDTH)==true)
@@ -44,10 +58,10 @@ int main()
 
     // Создание диаграммы
     double min, max;
-    find_minmax(numbers, min, max);
+    find_minmax(input.numbers, min, max);
 
 
-    const auto bins = make_histogram(numbers, bin_count,min,max);
+    const auto bins = make_histogram(input.numbers, input.bin_count,min,max);
 
     // Вывод данных
     show_histogram_svg(bins);

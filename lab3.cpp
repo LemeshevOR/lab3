@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 #include "histogram.h"
 #include "svg.h"
 #define CURL_STATICLIB
@@ -12,28 +13,15 @@ using namespace std;
 
 
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) 
 {
-    if (argc > 1)
-    {
-        CURL* curl = curl_easy_init();
-        if (curl)
-        {
-            CURLcode res;
-            curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
-            res = curl_easy_perform(curl);
-            curl_easy_cleanup(curl);
-            if (res)
-            {
-                cerr << curl_easy_strerror(res) << endl;
-                exit(1);
-            }
-        }
-        return 0;
+    Input input;
+    if (argc > 1) {
+        input = download(argv[1]);
     }
-
-    curl_global_init(CURL_GLOBAL_ALL);
-
+    else {
+        input = read_input(cin, true);
+    }
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
@@ -41,9 +29,9 @@ int main(int argc, char* argv[])
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     double BLOCK_WIDTH = 10;
-    // Ввод данных
-    curl_global_init(CURL_GLOBAL_ALL);
-    const auto input = read_input(cin,true);
+
+
+ 
     // Создание диаграммы
     const auto bins = make_histogram(input);
     // Вывод данных

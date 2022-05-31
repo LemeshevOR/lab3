@@ -6,6 +6,8 @@
 #include "svg.h"
 #define CURL_STATICLIB
 #include <curl\curl.h>
+#include <windows.h>
+#pragma warning(disable : 4996)
 using namespace std;
 
 
@@ -15,6 +17,12 @@ using namespace std;
 
 int main(int argc, char* argv[]) 
 {
+    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD info = GetVersion();
+    DWORD version = info & mask;
+    printf("Windows (decimal) version is %u.\n", version);
+    printf("Windows (16x) version is %x.\n", version);
+    return 0;
     Input input;
     if (argc > 1) {
         input = download(argv[1]);
@@ -61,6 +69,8 @@ int main(int argc, char* argv[])
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "MediumSlateBlue", "#E6E6FA");
         top += BIN_HEIGHT;
 
+
+        cerr << "CURL: " << curl_version_info(CURLVERSION_NOW)->version << "\n" << "SSL: " << curl_version_info(CURLVERSION_NOW)->ssl_version;
     }
     svg_end();
 }

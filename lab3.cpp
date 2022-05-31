@@ -25,10 +25,13 @@ int main(int argc, char* argv[])
     DWORD mask_major = 0x0000ff;
     DWORD version_major = (version & mask_major);
     DWORD version_minor = version >> 8;
-    printf("Windows (decimal) version is %u.\n", version);
-    printf("Windows (16x) version is %x.\n", version);
-    printf("Version Major is %u.\n", version_major);
-    printf("Version Minor is %u.\n", version_minor);
+    if ((info & 0x80000000) == 0)
+    {
+        DWORD version_major = version & mask_major;
+        DWORD version_minor = version >> 8;
+        DWORD build = platform;
+        printf("Windows v%u.%u (build %u)", version_major, version_minor, build);
+    }
     return 0;
     Input input;
     if (argc > 1) {

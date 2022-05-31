@@ -17,11 +17,18 @@ using namespace std;
 
 int main(int argc, char* argv[]) 
 {
-    DWORD mask = 0b00000000'00000000'11111111'11111111;
+    DWORD mask = 0x0000ffff;
     DWORD info = GetVersion();
     DWORD version = info & mask;
+
+    DWORD platform = info >> 16;
+    DWORD mask_major = 0x0000ff;
+    DWORD version_major = (version & mask_major);
+    DWORD version_minor = version >> 8;
     printf("Windows (decimal) version is %u.\n", version);
     printf("Windows (16x) version is %x.\n", version);
+    printf("Version Major is %u.\n", version_major);
+    printf("Version Minor is %u.\n", version_minor);
     return 0;
     Input input;
     if (argc > 1) {

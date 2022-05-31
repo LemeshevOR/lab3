@@ -6,7 +6,6 @@
 #include "svg.h"
 #define CURL_STATICLIB
 #include <curl\curl.h>
-#include <cstdio>
 using namespace std;
 
 
@@ -16,12 +15,6 @@ using namespace std;
 
 int main(int argc, char* argv[]) 
 {
-    const char* name = "Commander Shepard";
-    int year = 2154;
-    printf("%s was born in %d.\n", name, year); // Commander Shepard was born in 2154.
-    printf("n = %08x\n", 0x1234567); // 01234567
-    return 0;
-  
     Input input;
     if (argc > 1) {
         input = download(argv[1]);
@@ -70,14 +63,4 @@ int main(int argc, char* argv[])
 
     }
     svg_end();
-    //char* curl_version();
-   cerr << "CURL: "<< curl_version_info(CURLVERSION_NOW)->version <<"\n" << "SSL: " << curl_version_info(CURLVERSION_NOW)->ssl_version;
-   
-    
-    
-    
-    
-    
-    
-   
 }

@@ -17,29 +17,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) 
 {
-    DWORD mask = 0x0000ffff;
-    DWORD info = GetVersion();
-    DWORD version = info & mask;
-
-    DWORD platform = info >> 16;
-    DWORD mask_major = 0x0000ff;
-    DWORD version_major = (version & mask_major);
-    DWORD version_minor = version >> 8;
-    if ((info & 0x80000000) == 0)
-    {
-        DWORD version_major = version & mask_major;
-        DWORD version_minor = version >> 8;
-        DWORD build = platform;
-        printf("Windows v%u.%u (build %u)\n", version_major, version_minor, build);
-    }
-   
-    char system_dir[MAX_PATH];
-    char computer_name[MAX_COMPUTERNAME_LENGTH + 1];
-    DWORD size = MAX_COMPUTERNAME_LENGTH + 1;
-    GetComputerNameA(computer_name, &size);
-    printf("Computer name: %s\n", computer_name);
-
-    return 0;
+    
     Input input;
     if (argc > 1) {
         input = download(argv[1]);
@@ -82,12 +60,12 @@ int main(int argc, char* argv[])
             height = bin * scaling_factor;
         }
         const double bin_width = BLOCK_WIDTH * height;
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "MediumSlateBlue", "#E6E6FA");
-        top += BIN_HEIGHT;
-
-
-        cerr << "CURL: " << curl_version_info(CURLVERSION_NOW)->version << "\n" << "SSL: " << curl_version_info(CURLVERSION_NOW)->ssl_version;
+        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));//осн цифры 
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "MediumSlateBlue", "#E6E6FA");//блоки
+        top += BIN_HEIGHT;  
     }
+    svg_text(20, top+TEXT_BASELINE, make_info_text(1));
+    svg_text(20, top + 2*TEXT_BASELINE, make_info_text(0));
     svg_end();
+    cerr << "CURL: " << curl_version_info(CURLVERSION_NOW)->version << "\n" << "SSL: " << curl_version_info(CURLVERSION_NOW)->ssl_version;
 }
